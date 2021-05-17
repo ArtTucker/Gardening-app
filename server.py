@@ -1,7 +1,6 @@
 """Gardening"""
 
 from jinja2 import StrictUndefined
-
 from datetime import datetime
 from flask import Flask, jsonify,render_template, redirect, request, flash, session, json
 from flask_debugtoolbar import DebugToolbarExtension
