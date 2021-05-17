@@ -1,7 +1,5 @@
---
 -- PostgreSQL database dump
 --
-
 -- Dumped from database version 9.5.4
 -- Dumped by pg_dump version 9.5.4
 
@@ -19,13 +17,11 @@ SET row_security = off;
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
-
 --
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
 
 SET search_path = public, pg_catalog;
 
@@ -45,7 +41,6 @@ CREATE TABLE alerts (
     alert_type_id integer
 );
 
-
 ALTER TABLE alerts OWNER TO vagrant;
 
 --
@@ -59,7 +54,6 @@ CREATE SEQUENCE alerts_alert_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER TABLE alerts_alert_id_seq OWNER TO vagrant;
 
 --
@@ -67,7 +61,6 @@ ALTER TABLE alerts_alert_id_seq OWNER TO vagrant;
 --
 
 ALTER SEQUENCE alerts_alert_id_seq OWNED BY alerts.alert_id;
-
 
 --
 -- Name: alerttype; Type: TABLE; Schema: public; Owner: vagrant
@@ -77,7 +70,6 @@ CREATE TABLE alerttype (
     alert_type_id integer NOT NULL,
     alert_type character varying
 );
-
 
 ALTER TABLE alerttype OWNER TO vagrant;
 
@@ -92,7 +84,6 @@ CREATE SEQUENCE alerttype_alert_type_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER TABLE alerttype_alert_type_id_seq OWNER TO vagrant;
 
 --
@@ -100,7 +91,6 @@ ALTER TABLE alerttype_alert_type_id_seq OWNER TO vagrant;
 --
 
 ALTER SEQUENCE alerttype_alert_type_id_seq OWNED BY alerttype.alert_type_id;
-
 
 --
 -- Name: plants; Type: TABLE; Schema: public; Owner: vagrant
@@ -127,7 +117,6 @@ CREATE TABLE plants (
     plant_image bytea
 );
 
-
 ALTER TABLE plants OWNER TO vagrant;
 
 --
@@ -141,7 +130,6 @@ CREATE SEQUENCE plants_plant_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER TABLE plants_plant_id_seq OWNER TO vagrant;
 
 --
@@ -149,7 +137,6 @@ ALTER TABLE plants_plant_id_seq OWNER TO vagrant;
 --
 
 ALTER SEQUENCE plants_plant_id_seq OWNED BY plants.plant_id;
-
 
 --
 -- Name: userplants; Type: TABLE; Schema: public; Owner: vagrant
@@ -161,7 +148,6 @@ CREATE TABLE userplants (
     user_id integer,
     qty integer
 );
-
 
 ALTER TABLE userplants OWNER TO vagrant;
 
@@ -176,7 +162,6 @@ CREATE SEQUENCE userplants_up_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER TABLE userplants_up_id_seq OWNER TO vagrant;
 
 --
@@ -184,7 +169,6 @@ ALTER TABLE userplants_up_id_seq OWNER TO vagrant;
 --
 
 ALTER SEQUENCE userplants_up_id_seq OWNED BY userplants.up_id;
-
 
 --
 -- Name: users; Type: TABLE; Schema: public; Owner: vagrant
@@ -204,7 +188,6 @@ CREATE TABLE users (
     alerts boolean
 );
 
-
 ALTER TABLE users OWNER TO vagrant;
 
 --
@@ -218,7 +201,6 @@ CREATE SEQUENCE users_user_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
 ALTER TABLE users_user_id_seq OWNER TO vagrant;
 
 --
@@ -227,13 +209,11 @@ ALTER TABLE users_user_id_seq OWNER TO vagrant;
 
 ALTER SEQUENCE users_user_id_seq OWNED BY users.user_id;
 
-
 --
 -- Name: alert_id; Type: DEFAULT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY alerts ALTER COLUMN alert_id SET DEFAULT nextval('alerts_alert_id_seq'::regclass);
-
 
 --
 -- Name: alert_type_id; Type: DEFAULT; Schema: public; Owner: vagrant
@@ -241,13 +221,11 @@ ALTER TABLE ONLY alerts ALTER COLUMN alert_id SET DEFAULT nextval('alerts_alert_
 
 ALTER TABLE ONLY alerttype ALTER COLUMN alert_type_id SET DEFAULT nextval('alerttype_alert_type_id_seq'::regclass);
 
-
 --
 -- Name: plant_id; Type: DEFAULT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY plants ALTER COLUMN plant_id SET DEFAULT nextval('plants_plant_id_seq'::regclass);
-
 
 --
 -- Name: up_id; Type: DEFAULT; Schema: public; Owner: vagrant
@@ -255,13 +233,11 @@ ALTER TABLE ONLY plants ALTER COLUMN plant_id SET DEFAULT nextval('plants_plant_
 
 ALTER TABLE ONLY userplants ALTER COLUMN up_id SET DEFAULT nextval('userplants_up_id_seq'::regclass);
 
-
 --
 -- Name: user_id; Type: DEFAULT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY users ALTER COLUMN user_id SET DEFAULT nextval('users_user_id_seq'::regclass);
-
 
 --
 -- Data for Name: alerts; Type: TABLE DATA; Schema: public; Owner: vagrant
@@ -271,13 +247,11 @@ COPY alerts (alert_id, user_plant_id, date, completion, alert_type_id) FROM stdi
 1	1	2016-11-30 00:00:00	t	1
 \.
 
-
 --
 -- Name: alerts_alert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
 SELECT pg_catalog.setval('alerts_alert_id_seq', 1, true);
-
 
 --
 -- Data for Name: alerttype; Type: TABLE DATA; Schema: public; Owner: vagrant
@@ -289,13 +263,11 @@ COPY alerttype (alert_type_id, alert_type) FROM stdin;
 3	Trimming
 \.
 
-
 --
 -- Name: alerttype_alert_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
 SELECT pg_catalog.setval('alerttype_alert_type_id_seq', 3, true);
-
 
 --
 -- Data for Name: plants; Type: TABLE DATA; Schema: public; Owner: vagrant
@@ -326,13 +298,11 @@ COPY plants (plant_id, common_name, duration, active_growth_period, flower_color
 22	Wreath goldenrod	perennial	spring and summer	yellow	yes	dark green	3	no	yes	yes	low	low	5.5	7	intermediate	-28	\\x2f7374617469632f777265617468676f6c64656e726f642e6a706722
 \.
 
-
 --
 -- Name: plants_plant_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
 SELECT pg_catalog.setval('plants_plant_id_seq', 22, true);
-
 
 --
 -- Data for Name: userplants; Type: TABLE DATA; Schema: public; Owner: vagrant
@@ -342,13 +312,11 @@ COPY userplants (up_id, plant_id, user_id, qty) FROM stdin;
 1	11	1	\N
 \.
 
-
 --
 -- Name: userplants_up_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
 SELECT pg_catalog.setval('userplants_up_id_seq', 1, true);
-
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: vagrant
@@ -358,13 +326,11 @@ COPY users (user_id, email, password, first_name, last_name, phone_number, city,
 1	al@test.com	admin123	Al	Beback	8327947918	\N	\N	\N	2016-11-23 01:42:42.154358	t
 \.
 
-
 --
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: vagrant
 --
 
 SELECT pg_catalog.setval('users_user_id_seq', 1, true);
-
 
 --
 -- Name: alerts_pkey; Type: CONSTRAINT; Schema: public; Owner: vagrant
@@ -373,14 +339,12 @@ SELECT pg_catalog.setval('users_user_id_seq', 1, true);
 ALTER TABLE ONLY alerts
     ADD CONSTRAINT alerts_pkey PRIMARY KEY (alert_id);
 
-
 --
 -- Name: alerttype_pkey; Type: CONSTRAINT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY alerttype
     ADD CONSTRAINT alerttype_pkey PRIMARY KEY (alert_type_id);
-
 
 --
 -- Name: plants_pkey; Type: CONSTRAINT; Schema: public; Owner: vagrant
@@ -389,14 +353,12 @@ ALTER TABLE ONLY alerttype
 ALTER TABLE ONLY plants
     ADD CONSTRAINT plants_pkey PRIMARY KEY (plant_id);
 
-
 --
 -- Name: userplants_pkey; Type: CONSTRAINT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY userplants
     ADD CONSTRAINT userplants_pkey PRIMARY KEY (up_id);
-
 
 --
 -- Name: users_email_key; Type: CONSTRAINT; Schema: public; Owner: vagrant
@@ -405,14 +367,12 @@ ALTER TABLE ONLY userplants
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_email_key UNIQUE (email);
 
-
 --
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (user_id);
-
 
 --
 -- Name: alerts_alert_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: vagrant
@@ -421,14 +381,12 @@ ALTER TABLE ONLY users
 ALTER TABLE ONLY alerts
     ADD CONSTRAINT alerts_alert_type_id_fkey FOREIGN KEY (alert_type_id) REFERENCES alerttype(alert_type_id);
 
-
 --
 -- Name: alerts_user_plant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY alerts
     ADD CONSTRAINT alerts_user_plant_id_fkey FOREIGN KEY (user_plant_id) REFERENCES userplants(up_id);
-
 
 --
 -- Name: userplants_plant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: vagrant
@@ -437,14 +395,12 @@ ALTER TABLE ONLY alerts
 ALTER TABLE ONLY userplants
     ADD CONSTRAINT userplants_plant_id_fkey FOREIGN KEY (plant_id) REFERENCES plants(plant_id);
 
-
 --
 -- Name: userplants_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: vagrant
 --
 
 ALTER TABLE ONLY userplants
     ADD CONSTRAINT userplants_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(user_id);
-
 
 --
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
@@ -455,8 +411,6 @@ REVOKE ALL ON SCHEMA public FROM postgres;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
-
 --
 -- PostgreSQL database dump complete
 --
-
